@@ -1,0 +1,371 @@
+[gd_scene load_steps=36 format=3 uid="uid://bajntgfgr6h75"]
+
+[ext_resource type="Script" uid="uid://2earlxfk7ihc" path="res://controller_examples_extended/scripts/velocity_indicator.gd" id="1_1aaf3"]
+[ext_resource type="Script" uid="uid://cbt6sqljevg1l" path="res://controller_examples_extended/scripts/camera/cam_control.gd" id="1_2f0j0"]
+[ext_resource type="Script" uid="uid://bqx8568q6hfw7" path="res://controller_examples_extended/scripts/collision_shape_3d.gd" id="1_8vf21"]
+[ext_resource type="Script" uid="uid://cavoehjg14dyj" path="res://character_controller/scripts/action_container.gd" id="1_n2c78"]
+[ext_resource type="Script" uid="uid://dwmt67u4cdmde" path="res://controller_examples_extended/scripts/action_nodes/action_toggle_cam_mode.gd" id="2_2f0j0"]
+[ext_resource type="Script" uid="uid://droip44yg0hpa" path="res://controller_examples_extended/scripts/camera/camera.gd" id="2_3bp8x"]
+[ext_resource type="Script" uid="uid://dhxeoug7ju6y3" path="res://character_controller/scripts/movement_state_manager.gd" id="2_607c0"]
+[ext_resource type="Script" uid="uid://0s27mb2d6unm" path="res://character_controller/scripts/action_container_config.gd" id="4_ingsn"]
+[ext_resource type="Script" uid="uid://u6oqt1mkciyk" path="res://controller_examples_extended/scripts/action_nodes/action_move_grounded.gd" id="5_msbvb"]
+[ext_resource type="Script" uid="uid://tkgeom7u4ts8" path="res://controller_examples_extended/scripts/action_nodes/action_run.gd" id="6_4hktv"]
+[ext_resource type="Script" uid="uid://cvaa0b0b37lra" path="res://controller_examples_extended/scripts/movement_states/movement_grounded.gd" id="6_8iv0o"]
+[ext_resource type="Script" uid="uid://cidaxay3j31y4" path="res://controller_examples_extended/scripts/action_nodes/action_toggle_flight.gd" id="6_r0svq"]
+[ext_resource type="Script" uid="uid://biutwlaoro2yv" path="res://controller_examples_extended/scripts/movement_states/movement_flying.gd" id="7_msbvb"]
+[ext_resource type="Script" uid="uid://yr7nrreplsup" path="res://controller_examples_extended/scripts/action_nodes/action_look.gd" id="8_anyo6"]
+[ext_resource type="Script" uid="uid://siitldmsdjhq" path="res://controller_examples_extended/scripts/action_nodes/action_move_flying.gd" id="9_bifay"]
+[ext_resource type="Script" uid="uid://cqg7xu6e252m1" path="res://controller_examples_extended/scripts/action_nodes/action_jump.gd" id="9_qh62g"]
+[ext_resource type="Script" uid="uid://bevh701nwwlbl" path="res://controller_examples_extended/scripts/action_nodes/action_crouch.gd" id="9_t3gqu"]
+[ext_resource type="Script" uid="uid://cl52q8ypq5nle" path="res://controller_examples_extended/scripts/movement_state_data/state_data_manager.gd" id="11_mdw8q"]
+[ext_resource type="Script" uid="uid://byq7agml5pknb" path="res://controller_examples_extended/scripts/action_nodes/action_to_glide.gd" id="11_re5q8"]
+[ext_resource type="Script" uid="uid://d1pcat3j5c5rr" path="res://controller_examples_extended/scripts/action_nodes/action_boost.gd" id="14_tpdyn"]
+[ext_resource type="Script" uid="uid://bqsaehyf1vjoc" path="res://controller_examples_extended/scripts/movement_state_data/character_state_data_movement_extended.gd" id="16_qh62g"]
+[ext_resource type="Script" uid="uid://cvgwclg2t0438" path="res://controller_examples_extended/scripts/movement_state_data/character_state_data_movement.gd" id="16_t3gqu"]
+[ext_resource type="Script" uid="uid://bhneyxo8fhyqs" path="res://controller_examples_extended/scripts/action_nodes/action_glide_look.gd" id="18_nsa3x"]
+[ext_resource type="Curve" uid="uid://cfgdjnm0l3ugg" path="res://controller_examples_extended/scripts/lift_curve.tres" id="20_v0m3c"]
+[ext_resource type="Curve" uid="uid://cvyiuar1wlkea" path="res://controller_examples_extended/scripts/drag_curve.tres" id="21_j208c"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nsa3x"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fr14q"]
+size = Vector3(0.6, 1.8, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fr14q"]
+size = Vector3(0.6, 1.8, 0.6)
+
+[sub_resource type="Animation" id="Animation_607c0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D/MeshInstance3D:mesh:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6, 1.8, 0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.9, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CamPivot:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape3D/MeshInstance3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape3D/MeshInstance3D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CollisionShape3D:shape:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6, 1.8, 0.6)]
+}
+
+[sub_resource type="Animation" id="Animation_n2c78"]
+resource_name = "crouch"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.6, 1.8, 0.6), Vector3(0.6, 1.5, 0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D/MeshInstance3D:mesh:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.6, 1.8, 0.6), Vector3(0.6, 1.5, 0.6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.9, 0), Vector3(0, 0.75, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CamPivot:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5, 0), Vector3(0, 1.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1aaf3"]
+resource_name = "prone"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.9, 0), Vector3(0, 0.3, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CamPivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5, 0), Vector3(0, 0.3, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D/MeshInstance3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape3D/MeshInstance3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.5708, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape3D:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.6, 1.8, 0.6), Vector3(0.6, 0.6, 0.6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2f0j0"]
+_data = {
+&"RESET": SubResource("Animation_607c0"),
+&"crouch": SubResource("Animation_n2c78"),
+&"prone": SubResource("Animation_1aaf3")
+}
+
+[sub_resource type="Resource" id="Resource_ingsn"]
+script = ExtResource("4_ingsn")
+active_profile = &"grounded"
+profiles = Dictionary[StringName, Array]({
+&"flying": [&"FlyingMove", &"Run", &"ToggleMoveState", &"Look"],
+&"global": [&"CamChange"],
+&"grounded": [&"GroundedMove", &"Jump", &"Crouch", &"Run", &"ToggleMoveState", &"ToGlide", &"Look"]
+})
+metadata/_custom_type_script = "uid://0s27mb2d6unm"
+
+[sub_resource type="Resource" id="Resource_njtn7"]
+script = ExtResource("16_qh62g")
+jump_strength = 5.0
+move_speed = 4.0
+move_speed_multiplier_fast = 1.5
+move_speed_multiplier_slow = 0.5
+fov = 0.0
+fov_multiplier_fast = 0.0
+fov_multiplier_slow = 0.0
+state_id = &"grounded"
+metadata/_custom_type_script = "uid://bqsaehyf1vjoc"
+
+[sub_resource type="Resource" id="Resource_re5q8"]
+script = ExtResource("16_t3gqu")
+move_speed = 5.0
+move_speed_multiplier_fast = 2.0
+move_speed_multiplier_slow = 0.5
+fov = 0.0
+fov_multiplier_fast = 0.0
+fov_multiplier_slow = 0.0
+state_id = &"flying"
+metadata/_custom_type_script = "uid://cvgwclg2t0438"
+
+[node name="MinecraftCharacter" type="CharacterBody3D"]
+
+[node name="VelocityIndicator" type="Node3D" parent="."]
+top_level = true
+script = ExtResource("1_1aaf3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VelocityIndicator"]
+mesh = SubResource("BoxMesh_nsa3x")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("BoxShape3D_fr14q")
+script = ExtResource("1_8vf21")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+layers = 0
+mesh = SubResource("BoxMesh_fr14q")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("BoxMesh_nsa3x")
+skeleton = NodePath("../..")
+
+[node name="CamPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("1_2f0j0")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamPivot"]
+spring_length = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="CamPivot/SpringArm3D"]
+fov = 70.0
+script = ExtResource("2_3bp8x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2f0j0")
+}
+
+[node name="ActionContainer" type="Node" parent="."]
+script = ExtResource("1_n2c78")
+_config_container = SubResource("Resource_ingsn")
+metadata/_custom_type_script = "uid://cavoehjg14dyj"
+
+[node name="CamChange" type="Node" parent="ActionContainer"]
+script = ExtResource("2_2f0j0")
+
+[node name="GroundAndFlight" type="Node" parent="ActionContainer"]
+
+[node name="Look" type="Node" parent="ActionContainer/GroundAndFlight"]
+script = ExtResource("8_anyo6")
+
+[node name="Run" type="Node" parent="ActionContainer/GroundAndFlight"]
+script = ExtResource("6_4hktv")
+
+[node name="ToggleMoveState" type="Node" parent="ActionContainer/GroundAndFlight"]
+script = ExtResource("6_r0svq")
+
+[node name="GroundedActions" type="Node" parent="ActionContainer/GroundAndFlight"]
+
+[node name="GroundedMove" type="Node" parent="ActionContainer/GroundAndFlight/GroundedActions"]
+script = ExtResource("5_msbvb")
+
+[node name="Crouch" type="Node" parent="ActionContainer/GroundAndFlight/GroundedActions"]
+script = ExtResource("9_t3gqu")
+
+[node name="Jump" type="Node" parent="ActionContainer/GroundAndFlight/GroundedActions"]
+script = ExtResource("9_qh62g")
+
+[node name="ToGlide" type="Node" parent="ActionContainer/GroundAndFlight/GroundedActions"]
+script = ExtResource("11_re5q8")
+
+[node name="FlightActions" type="Node" parent="ActionContainer/GroundAndFlight"]
+
+[node name="FlyingMove" type="Node" parent="ActionContainer/GroundAndFlight/FlightActions"]
+script = ExtResource("9_bifay")
+
+[node name="GlidingActions" type="Node" parent="ActionContainer"]
+
+[node name="Boost" type="Node" parent="ActionContainer/GlidingActions"]
+script = ExtResource("14_tpdyn")
+
+[node name="GlideLook" type="Node" parent="ActionContainer/GlidingActions"]
+script = ExtResource("18_nsa3x")
+
+[node name="MovementStateManager" type="Node" parent="." node_paths=PackedStringArray("active_state")]
+script = ExtResource("2_607c0")
+active_state = NodePath("GroundedMovement")
+metadata/_custom_type_script = "uid://dhxeoug7ju6y3"
+
+[node name="GroundedMovement" type="Node" parent="MovementStateManager"]
+script = ExtResource("6_8iv0o")
+
+[node name="FlyingMovement" type="Node" parent="MovementStateManager"]
+script = ExtResource("7_msbvb")
+lift_curve = ExtResource("20_v0m3c")
+drag_curve = ExtResource("21_j208c")
+
+[node name="StateDataManager" type="Node" parent="."]
+script = ExtResource("11_mdw8q")
+_grounded_data = SubResource("Resource_njtn7")
+_flying_data = SubResource("Resource_re5q8")

@@ -1,0 +1,38 @@
+added script_templates folder
+
+ActionNode _added_to_container() func added
+- ActionContainer calls ActionNode _added_to_container()
+
+ActionContainer checks for nested children
+
+changes to Action node can_play so that play is only called if not playing
+
+action container will call ActionNode._added_to_container() if action is to be added and already exists.
+This allows for a refresh of the ActionNode when the action container changes configurations to one that the action
+ node already exists in. on config change an action would not be removed it it was active and existed in the new config,
+ potentially breaking references set in ActionNode._added_to_container()
+
+with the addition of a global config state the responsibilites of action container config has grown
+ and now holds the active profile as well as validation functions
+
+action container only has one reconfigure func now
+
+static_helper_functions rotate_y_to_point() has been changed to a better face_point()
+
+logic change in action node for can_play
+ allows layered actions to always be called if they are enabled
+ still prevents non-layered actions from interrupting themselves 
+
+action node now has enter and exit funcs as well as updated signals
+ action container adjusted to use new node fucntions
+
+added movement state velocity tag tracking
+
+-------------------------------------------------------
+Add a debug hud that shows active actions in container and currently used actions
+Color changes to signify state: Green (in use), Red (not used)
+
+Action Container
+| Move
+| Jump
+| Run

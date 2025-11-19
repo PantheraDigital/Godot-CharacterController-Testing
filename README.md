@@ -2,12 +2,16 @@
 When character is gliding velocity flickers between positive and negative values, increasing with intensity as angle between collider and velocity indicator increases. 
 
 # Scenario
-Character double jumps to enter glide mode (double tap space).
-They can use the camera to steer as they glide through the air (mouse movement).
+Character double jumps to enter glide mode (double tap space). \
+They can use the camera to steer as they glide through the air (mouse movement). \
 In this mode physics dominantly controls the movement of the character based on their velocity and rotation of the collider. Specifically the angles between the collider and their current velocity are used through the use of a child node 3d that keeps its basis z pointed at the direction of velocity.
 
 A secondary problem arises when character is falling straight down and looks straight down. 
 Everything chaotically breaks.
+
+
+https://github.com/user-attachments/assets/8db244d8-79eb-4c82-8d45-88923dc09d7c
+
 
 
 # Main scripts at play
@@ -34,6 +38,11 @@ The primary scripts of concern are action_glide_look.gd, movement_flying.gd, and
 ## Used in [Prototype.tscn](/controller_examples/scenes/Prototype.tscn)
 [controller_player](/controller_examples_extended/scripts/controller_player.gd)
 - takes player input and pushes it to actions on controlled node
+
+# Scene
+In the Prototype scene the character will appear as a wire frame box, this is the collider. It also has a small white cube mesh attached to the front to indicate the direction it is facing. \
+At the feet of the character is another white cube mesh that is attached to the velocity indicator node. \
+During play arrows will appear using Debug Draw 3d to show the relative basis axis. \ 
 
 <br><br><br>
 

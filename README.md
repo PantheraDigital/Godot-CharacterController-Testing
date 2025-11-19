@@ -1,3 +1,42 @@
+# Problem
+When character is gliding velocity flickers between positive and negative values, increasing with intensity as angle between collider and velocity indicator increases. 
+
+# Scenario
+Character double jumps to enter glide mode (double tap space).
+They can use the camera to steer as they glide through the air (mouse movement).
+In this mode physics dominantly controls the movement of the character based on their velocity and rotation of the collider. Specifically the angles between the collider and their current velocity are used through the use of a child node 3d that keeps its basis z pointed at the direction of velocity.
+
+A secondary problem arises when character is falling straight down and looks straight down. 
+Everything chaotically breaks.
+
+
+# Main scripts at play
+The primary scripts of concern are action_glide_look.gd, movement_flying.gd, and velocity_indicator.gd
+
+## Used in [minecraft_character.tscn](/controller_examples_extended/scenes/minecraft_character.tscn)
+[movement_flying](/controller_examples_extended/scripts/movement_states/movement_flying.gd)
+- controls the physics of the character when gliding
+- extends res://character_controller/scripts/movement_state.gd
+
+[velocity_indicator](/controller_examples_extended/scripts/velocity_indicator.gd)
+- tracks the velocity of the character
+- use of node 3d allows the use of basis for angle calculations used in movement_flying.gd (see func get_relative_pitch)
+
+[action_glide_look](/controller_examples_extended/scripts/action_nodes/action_glide_look.gd)
+- uses input from controller class to change collider rotation
+- ties camera rotation to collider
+- extends [action_node](/character_controller/scripts/action_node.gd)
+
+[action_to_glide](/controller_examples_extended/scripts/action_nodes/action_to_glide.gd)
+- transitions from walking to glide movement
+- applies some velocity to get initial movement after transition
+
+## Used in [Prototype.tscn](/controller_examples/scenes/Prototype.tscn)
+[controller_player](/controller_examples_extended/scripts/controller_player.gd)
+- takes player input and pushes it to actions on controlled node
+
+<br><br><br>
+
 # Modular-Character-Controller-for-Godot
 
 [Demo Video](https://youtu.be/ABDJnFag9q8) \

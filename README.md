@@ -44,6 +44,22 @@ In the Prototype scene the character will appear as a wire frame box, this is th
 At the feet of the character is another white cube mesh that is attached to the velocity indicator node. \
 During play arrows will appear using Debug Draw 3d to show the relative basis axis. \ 
 
+# Controls 
+## Grounded movement
+- WASD = move
+- mouse = look around
+- space bar = jump
+- double tap space bar = transition to flight
+## Flying movement
+- mouse up/down = angle character up or down
+- mouse left/right = rotate character left or right
+- space bar = boost forward
+
+This movement should resemble a glider floating through the air. \
+Looking down will result in altitude loss but increase in speed. \
+Looking up will result in altitude gain but speed loss, if the character has enough speed. \
+Rotation left and right will result in turning.
+
 <br><br><br>
 
 # Modular-Character-Controller-for-Godot

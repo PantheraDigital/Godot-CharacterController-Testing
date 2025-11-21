@@ -19,11 +19,12 @@ The primary scripts of concern are action_glide_look.gd, movement_flying.gd, and
 
 ## Used in [minecraft_character.tscn](/controller_examples_extended/scenes/minecraft_character.tscn)
 [movement_flying](/controller_examples_extended/scripts/movement_states/movement_flying.gd)
-- controls the physics of the character when gliding
+- controls the physics and movement of the character when gliding
 - extends res://character_controller/scripts/movement_state.gd
 
 [velocity_indicator](/controller_examples_extended/scripts/velocity_indicator.gd)
 - tracks the velocity of the character
+- literally just points basis.z to velocity direction
 - use of node 3d allows the use of basis for angle calculations used in movement_flying.gd (see func get_relative_pitch)
 
 [action_glide_look](/controller_examples_extended/scripts/action_nodes/action_glide_look.gd)

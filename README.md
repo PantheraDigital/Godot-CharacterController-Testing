@@ -20,7 +20,7 @@ The primary scripts of concern are action_glide_look.gd, movement_flying.gd, and
 ## Used in [minecraft_character.tscn](/controller_examples_extended/scenes/minecraft_character.tscn)
 [movement_flying](/controller_examples_extended/scripts/movement_states/movement_flying.gd)
 - controls the physics and movement of the character when gliding
-- extends res://character_controller/scripts/movement_state.gd
+- extends [movement_state](/character_controller/scripts/movement_state.gd)
 
 [velocity_indicator](/controller_examples_extended/scripts/velocity_indicator.gd)
 - tracks the velocity of the character

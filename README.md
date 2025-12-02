@@ -8,6 +8,8 @@ This new negative angle is then used in the next process to calculate lift. \
 This causes a rubber banding effect where the velocity overshoots the direction of the collider until it slowly settles due to lift force fading as gravity fights it. 
 
 <img width="768" height="832" alt="LiftRubberBandingDiogram drawio" src="https://github.com/user-attachments/assets/b27547e3-59d1-473e-b952-09fe2644c4d7" />
+In the img the chord is the collider.basis.z and the relative wind would be the character velocity. \ 
+Velocity is used as the relative wind in this project as there is no air flow, thus leaving only the velocity of the character to determine the flow of air around it.
 
 # Scenario
 Character double jumps to enter glide mode (double tap space). \

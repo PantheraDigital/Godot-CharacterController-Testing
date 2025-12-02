@@ -54,6 +54,10 @@ func _update_current_velocity(velocity: Vector3) -> void:
 
 
 
+## are rotations set properly
+# - collision shape
+# - vel indicator
+# - here in _process
 
 
 
@@ -61,3 +65,30 @@ func _update_current_velocity(velocity: Vector3) -> void:
 
 ## add action node template for layered and non-layered action nodes
 ## action container setter based on node tree
+
+
+## get rid of refresh
+## replace with activate and deactivate
+##  use these to set variables that need to be set when an action is first played (like roll_ac)
+##  variables like _character should be set in _ready
+##  the node is never moved in the tree they are only added/removed from the tree or activated/deactivated
+# Action
+# - CanPlay
+#
+# - Enable  - allows action to play
+# - Disable - prevent action from playing
+#
+# - Enter - prepare variables
+# - Play  - perform logic
+# - Stop  - intterupt logic (public way to stop action)
+# - _Exit - clean up variables (internally used when action naturally ends)
+#
+# input:
+# container -> Enter -> Play -> _Exit
+# container -> Stop (if playing)
+
+## in action container add enable and disable action
+##  use these instead of add and remove when reconfiguring
+##  use add and remove for action node changes in the tree
+
+## need to disinguish between node changes in the tree and action changes in the container

@@ -1,5 +1,11 @@
 # Problem
 When character is gliding velocity flickers between positive and negative values, increasing with intensity as angle between collider and velocity indicator increases. 
+## Update
+Jitter source potentially discovered. \
+Lift is based on the angle between the collider of the character and its velocity. \
+When the lift is added to the velocity this can overshoot the direction of the collider creating a negative angle in the opposite direction. \
+This new negative angle is then used in the next process to calculate lift. \
+This causes a rubber banding effect where the velocity overshoots the direction of the collider until it slowly settles due to lift force fading as gravity fights it. 
 
 # Scenario
 Character double jumps to enter glide mode (double tap space). \
